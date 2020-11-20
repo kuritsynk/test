@@ -1,112 +1,16 @@
 #include <iostream>
 #include <string>
 
-class A {
+#include "A.cpp"
+#include "B.cpp"
+#include "C.cpp"
+//#include "AFactory.cpp"
 
-	int x;
+A* createA(int x, float y, int c) {
 
-	float y;
+	return new C(x, y, c);
 
-public:
-
-	A(int x, float y) : x(x), y(y) {}
-
-	int getX() { return x; }
-
-	float getY() { return y; }
-
-
-};
-
-class B {
-
-	int x;
-
-	float y;
-
-	int z;
-
-	float z1;
-
-	int* ch;
-
-	A a;
-
-	B(int x, float y, int z, float z1, A a, int* ch)
-		: x(x), y(y), z(z), z1(z1), a(a), ch(ch) {	}
-
-
-public:
-
-	int getX() { return x; }
-
-	float getY() { return y; }
-
-	A& getA() { return a; }
-
-	class Builder {
-
-		int x;
-
-		float y;
-
-		int z;
-
-		float z1;
-
-		int* ch;
-
-		A a;
-
-	public:
-		Builder() : a(A(0, 0)) {
-		}
-
-		Builder& withX(int x) {
-			this->x = x;
-			return *this;
-		}
-
-		Builder& withY(float y) {
-			this->y = y;
-			return *this;
-		}
-
-		Builder& withZ(int z) {
-			this->z = z;
-			return *this;
-		}
-
-		Builder& withZ1(float z1) {
-			this->z1 = z1;
-			return *this;
-		}
-
-		Builder& withCh(int* ch) {
-			this->ch = ch;
-			return *this;
-		}
-
-		Builder& withA(A a) {
-			this->a = a;
-			return *this;
-		}
-
-		B build() {
-			return B(x, y, z, z1, a, ch);
-		}
-
-
-	};
-
-	static Builder builder() {
-		return Builder();
-	}
-
-};
-
-
-
+}
 
 
 
@@ -138,6 +42,28 @@ int main() {
 
 
 	std::cout << "b.y=" << b.getY() << std::endl; // 2
+
+
+	/*
+	std::cout << "Constructor example" << std::endl;
+
+	C c = C(2, 2.76, 5);
+
+	A* p = &a;
+	p->print(); // x=1;y=3.14
+
+	std::cout << std::endl;
+
+	p = &c;
+	p->print(); // x=2;y=2.76;c=5
+
+	*/
+
+	std::cout << std::endl << "Factory example" << std::endl;
+
+	A* p = createA(2, 2.76, 5);
+	p->print();
+
 
 	std::cin.get();
 }
