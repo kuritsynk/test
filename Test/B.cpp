@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _B_CPP_
+#define _B_CPP_
 
 #include "A.cpp"
 
@@ -88,3 +90,5 @@ public:
 	}
 
 };
+
+#endif _B_CPP_

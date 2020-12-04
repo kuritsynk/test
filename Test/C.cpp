@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _C_CPP_
+#define _C_CPP_
 
 #include "A.cpp"
 
@@ -19,3 +21,5 @@ public:
 		std::cout << " ;c=" << c;
 	}
 };
+
+#endif _C_CPP_

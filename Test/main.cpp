@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// #include "Listener.cpp"
 #include "A.cpp"
 #include "B.cpp"
 #include "C.cpp"
@@ -21,9 +22,38 @@ std::string ask_user_name() {
 	return user_name;
 }
 
+class OnCreateListener : public Listener<const char*> {
+
+public:
+
+	void execute(const char* event) {
+		std::cout << "Event created: " << event << endl;
+	}
+
+};
+
+
+class OnCreateListenerA : public Listener<const char*> {
+
+public:
+
+	void execute(const char* event) {
+		std::cout << "Event created A fdfkdjfk: " << event << endl;
+	}
+
+};
+
+
+
 int main() {
 	std::cout << "Hello, " << ask_user_name() << "!" << std::endl;
+
+	OnCreateListener onCreateListener;
+	onCreateEvent.registerListener(&onCreateListener);
 	
+	OnCreateListenerA onCreateListenerA;
+	onCreateEvent.registerListener(&onCreateListenerA);
+
 	A a(1, 3.14);
 
 	int x = a.getX();  // x = 1;
